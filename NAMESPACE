@@ -31,7 +31,7 @@ seasonaldummyf, seasonplot, ses, sindexf, splinef,tslm,fourier,fourierf,forecast
 thetaf, tsdisplay, simulate.ets, simulate.ar, simulate.Arima, simulate.fracdiff, ndiffs, nsdiffs, dm.test,tbats.components,
 Acf,Pacf,ma,CV,BoxCox.lambda,dshw, bats, tbats, msts, getResponse, tsoutliers,
 tsclean, bizdays, easter,
-stlm, forecast.stlm)
+stlm, forecast.stlm, hybridf)
 
 S3method(as.character, Arima)
 S3method(as.data.frame,forecast)
