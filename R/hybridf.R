@@ -27,7 +27,6 @@ hybridf <- function(x,
                       bounds = c("both", "usual", "admissible"),
                       restrict = TRUE,
                       allow.multiplicative.trend = FALSE,
-                      use.initial.values = FALSE,
                       
                       # parameters to pass to auto.arima:
                       d = NA,
@@ -63,7 +62,7 @@ hybridf <- function(x,
                opt.crit = opt.crit, nmse = nmse, bounds = bounds,
                restrict = restrict, allow.multiplicative.trend = allow.multiplicative.trend,
                use.initial.values = use.initial.values,
-               lambda = lambda, ic = ic)
+               lambda = lambda, biasadj = biasadj, ic = ic)
    
    
    mod2 <- auto.arima(x,
@@ -74,13 +73,15 @@ hybridf <- function(x,
                       approximation = approximation, test = test, seasonal.test = seasonal.test,
                       allowdrift = allowdrift, allowmean = allowmean, 
                       parallel = parallel, num.cores = num.cores,
-                      lambda = lambda, ic = ic)
+                      lambda = lambda, biasadj = biasadj, ic = ic)
    
    fc1 <- forecast(mod1, h = h, level = level, fan = fan, simulate = simulate,
-                   bootstrap = bootstrap.ets, npaths = npaths)
+                   bootstrap = bootstrap.ets, npaths = npaths, lambda = lambda,
+                   biasadj = biasadj)
    
    fc2 <- forecast(mod2, h = h, level = level, fan = fan, 
-                   bootstrap = bootstrap.aa, npaths = npaths)
+                   bootstrap = bootstrap.aa, npaths = npaths, lambda = lambda,
+                   biasadj = biasadj)
    
    fc_comb <- list()
    fc_comb$model <- list(mod1 = mod1, mod2 = mod2)
@@ -94,8 +95,8 @@ hybridf <- function(x,
    fc_comb$x <- x
    fc_comb$fitted <- (fc1$fitted + fc2$fitted) / 2
    fc_comb$residuals <- fc_comb$fitted - fc_comb$x
-   fc-comb$fc_ets <- fc1
-   fc-comb$fc_aa <- fc2
+   fc_comb$fc_ets <- fc1
+   fc_comb$fc_aa <- fc2
    class(fc_comb) <- "forecast"
    
    return(fc_comb)
