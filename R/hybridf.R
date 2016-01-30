@@ -1,12 +1,12 @@
 hybridf <- function(x, 
                       # parameters to pass to forecast.ets() and forecast.Arima():
-                      h = 10,
+                      h = ifelse(frequency(x) > 1, 2 * frequency(x), 10),
                       level = c(80, 95),
                       fan = FALSE,
                       simulate = FALSE,   
-                      bootstrap = FALSE,
+                      bootstrap.ets = FALSE,
+                      bootstrap.aa = FALSE,  
                       npaths = 5000,
-                      ...,
                       
                       # parameters for both ets() and auto.arima()
                       lambda = NULL,
@@ -77,10 +77,10 @@ hybridf <- function(x,
                       lambda = lambda, ic = ic)
    
    fc1 <- forecast(mod1, h = h, level = level, fan = fan, simulate = simulate,
-                   bootstrap = bootstrap, npaths = npaths)
+                   bootstrap = bootstrap.ets, npaths = npaths)
    
    fc2 <- forecast(mod2, h = h, level = level, fan = fan, 
-                   bootstrap = bootstrap, npaths = npaths)
+                   bootstrap = bootstrap.aa, npaths = npaths)
    
    fc_comb <- list()
    fc_comb$model <- list(mod1 = mod1, mod2 = mod2)
@@ -94,6 +94,8 @@ hybridf <- function(x,
    fc_comb$x <- x
    fc_comb$fitted <- (fc1$fitted + fc2$fitted) / 2
    fc_comb$residuals <- fc_comb$fitted - fc_comb$x
+   fc-comb$fc_ets <- fc1
+   fc-comb$fc_aa <- fc2
    class(fc_comb) <- "forecast"
    
    return(fc_comb)
