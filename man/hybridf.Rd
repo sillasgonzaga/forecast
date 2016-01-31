@@ -109,14 +109,14 @@ M3-competition data in generating point estimates; better than either \code{auto
 
 
 
-\references{Hyndman's blog \url{http://XXX}
+\references{\url{http://robjhyndman.com/hyndsight/show-me-the-evidence/}
 
-Peter's blog  \url{http://ellisp.github.io}.
+\url{http://ellisp.github.io/blog/2016/01/30/hybrid-forecasts/}.
 }
 
 
 
-\seealso{\code{\link{forecast.Arima}}, \code{\link{forecast.ets}}.}
+\seealso{\code{\link{auto.arima}}, \code{\link{ets}}, \code{\link{forecast.Arima}}, \code{\link{forecast.ets}}.}
 
 \author{Peter Ellis}
 \examples{fc <- hybridf(USAccDeaths)
