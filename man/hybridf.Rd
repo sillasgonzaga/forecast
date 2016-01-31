@@ -5,20 +5,19 @@
 \usage{
 hybridf(x, h = ifelse(frequency(x) > 1, 2 * frequency(x), 10), 
     level = c(80, 95), fan = FALSE, simulate = FALSE, bootstrap.ets = FALSE, 
-    bootstrap.aa = FALSE, npaths = 5000, lambda = NULL, 
+    bootstrap.aa = FALSE, npaths = 5000, lambda = NULL, biasadj = FALSE, 
     ic = c("aicc", "aic", "bic"), model = "ZZZ", damped = NULL, 
     alpha = NULL, beta = NULL, gamma = NULL, phi = NULL, additive.only = FALSE, 
     lower = c(rep(1e-04, 3), 0.8), upper = c(rep(0.9999, 3), 
         0.98), opt.crit = c("lik", "amse", "mse", "sigma", "mae"), 
     nmse = 3, bounds = c("both", "usual", "admissible"), restrict = TRUE, 
-    allow.multiplicative.trend = FALSE, use.initial.values = FALSE, 
-    d = NA, D = NA, max.p = 5, max.q = 5, max.P = 2, max.Q = 2, 
-    max.order = 5, max.d = 2, max.D = 1, start.p = 2, start.q = 2, 
-    start.P = 1, start.Q = 1, stationary = FALSE, seasonal = TRUE, 
-    stepwise = TRUE, trace = FALSE, approximation = (length(x) > 
-        100 | frequency(x) > 12), test = c("kpss", "adf", "pp"), 
-    seasonal.test = c("ocsb", "ch"), allowdrift = TRUE, allowmean = TRUE, 
-    parallel = FALSE, num.cores = 2) 
+    allow.multiplicative.trend = FALSE, d = NA, D = NA, max.p = 5, 
+    max.q = 5, max.P = 2, max.Q = 2, max.order = 5, max.d = 2, 
+    max.D = 1, start.p = 2, start.q = 2, start.P = 1, start.Q = 1, 
+    stationary = FALSE, seasonal = TRUE, stepwise = TRUE, trace = FALSE, 
+    approximation = (length(x) > 100 | frequency(x) > 12), test = c("kpss", 
+        "adf", "pp"), seasonal.test = c("ocsb", "ch"), allowdrift = TRUE, 
+    allowmean = TRUE, parallel = FALSE, num.cores = 2) 
 }
 
 \arguments{

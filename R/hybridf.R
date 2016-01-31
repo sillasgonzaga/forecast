@@ -10,6 +10,7 @@ hybridf <- function(x,
                       
                       # parameters for both ets() and auto.arima()
                       lambda = NULL,
+                      biasadj = FALSE,
                       ic = c("aicc", "aic", "bic"),
                       
                       # parameters to pass to ets()
@@ -61,7 +62,6 @@ hybridf <- function(x,
                additive.only = additive.only, lower = lower, upper = upper,
                opt.crit = opt.crit, nmse = nmse, bounds = bounds,
                restrict = restrict, allow.multiplicative.trend = allow.multiplicative.trend,
-               use.initial.values = use.initial.values,
                lambda = lambda, biasadj = biasadj, ic = ic)
    
    
